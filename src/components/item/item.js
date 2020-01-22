@@ -1,30 +1,43 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import FontinRegular from './font/fontin-regular.woff'
+import FontinSmallCaps from './font/fontin-smallcaps.woff'
+
+const GlobalStyle = createGlobalStyle`
+    @font-face {
+        font-family: 'FontinRegular';
+        src: url(${FontinRegular})
+    }
+
+    @font-face {
+        font-family: 'FontinSmallCaps';
+        src: url(${FontinSmallCaps})
+    }
+`
 
 const Container = styled.div`
     background: rgba(0, 0, 0, 0.8);
-    border: 1px solid ${props => props.theme.primary};
-    color: ${props => props.theme.primary};
+    color: ${props => props.theme.color};
+    font-family: 'FontinSmallCaps', Veranda, serif;
 `
 
 const Header = styled.div`
     padding: 10px;
     text-align: center;
-    text-transform: uppercase;
 `
 
 const theme = {
     magic: {
-        primary: '#8888ff',
+        color: '#8888ff',
     },
     normal: {
-        primary: '#c8c8c8',
+        color: '#c8c8c8',
     },
     rare: {
-        primary: '#ffff77',
+        color: '#ffff77',
     },
     unique: {
-        primary: '#af6025',
+        color: '#af6025',
     }
 }
 
@@ -42,6 +55,7 @@ function Item({
 }) {
     return (
         <ThemeProvider theme={theme[rarity]}>
+            <GlobalStyle />
             <Container>
                 <Header>
                     {labelPrefix} {labelBaseType} {labelSuffix}
