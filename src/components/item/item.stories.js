@@ -7,23 +7,23 @@ export default {
 };
 
 const labelTemplate = {
-    labelBaseType: 'Item',
-    labelPrefix: '',
-    labelSuffix: '',
+    labelBaseType: 'BaseType',
+    labelPrefix: 'Prefix',
+    labelSuffix: 'Suffix',
 }
 
 export const NormalItem = () => (
-  <Item rarity='normal' label={{...labelTemplate, labelBaseType: 'Normal Item'}}></Item>
+  <Item rarity='normal' label={{...labelTemplate, labelPrefix: '', labelSuffix: ''}}></Item>
 );
 
 export const MagicItem = () => (
-  <Item rarity='magic' label={{...labelTemplate, labelBaseType: 'Magic Item'}}></Item>
+  <Item rarity='magic' label={{...labelTemplate}}></Item>
 );
 
 export const RareItem = () => (
-  <Item rarity='rare' label={{...labelTemplate, labelBaseType: 'Rare Item'}}></Item>
+  <Item rarity='rare' label={{...labelTemplate, labelSuffix: ''}}></Item>
 );
 
 export const UniqueItem = () => (
-  <Item rarity='unique' label={{...labelTemplate, labelBaseType: 'Unique Item'}}></Item>
+  <Item rarity='unique' label={{...labelTemplate, labelSuffix: ''}}></Item>
 );

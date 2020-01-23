@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import FontinRegular from './font/fontin-regular.woff'
 import FontinSmallCaps from './font/fontin-smallcaps.woff'
+import Header from './header'
+import ItemThemes from './theme'
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -21,30 +23,6 @@ const Container = styled.div`
     font-family: 'FontinSmallCaps', Veranda, serif;
 `
 
-const Header = styled.div`
-    padding: 10px;
-    text-align: center;
-`
-
-const theme = {
-    magic: {
-        color: '#8888ff',
-    },
-    normal: {
-        color: '#c8c8c8',
-    },
-    rare: {
-        color: '#ffff77',
-    },
-    unique: {
-        color: '#af6025',
-    }
-}
-
-Container.defaultProps = {
-    theme: theme.unique  
-}
-
 function Item({
     label: {
         labelBaseType,
@@ -54,16 +32,18 @@ function Item({
     rarity,
 }) {
     return (
-        <ThemeProvider theme={theme[rarity]}>
+        <ThemeProvider theme={ItemThemes[rarity]}>
             <GlobalStyle />
             <Container>
-                <Header>
-                    {labelPrefix} {labelBaseType} {labelSuffix}
-                </Header>
+                <Header 
+                    baseType={labelBaseType} 
+                    prefix={labelPrefix} 
+                    suffix={labelSuffix}
+                    rarity={rarity}
+                ></Header>
             </Container>
         </ThemeProvider>
     );
 }
-
 
 export default Item
